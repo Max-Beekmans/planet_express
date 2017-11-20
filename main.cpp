@@ -1,10 +1,25 @@
-#include <iostream>
-#include "planet_express.h"
+#include "headquarters.h"
+#include "Helper/IOHandler.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    planet_express p;
 
-    p.do_scan();
+    player p{"Alberto"};
+    headquarters hq{p};
+
+    IOHandler handler{};
+    hq.do_scan();
+
+    for (int i = 0; i < 5; ++i) {
+        for (int j = 0; j < 5; ++j) {
+            for (int k = 0; k < 3; ++k) {
+                handler.Print(hq.last_scan[i][j][k]);
+            }
+            handler.Print(" ");
+        }
+        handler.PrintLine("");
+    }
+
+    hq.visit_sector(hq.last_scan[0][3]);
+
     return 0;
 }
