@@ -17,13 +17,12 @@ public:
     headquarters(player& p);
     void do_scan();
     int*** last_scan;
-    void visit_sector(int arr[3]);
-    void print_sector(sector s);
+    void visit_sector(int x, int y);
 private:
     player p;
     IOHandler io_handler;
     //int get_random(int min, int max);
-
+    sector visited_sectors[5][5];
 
 };
 

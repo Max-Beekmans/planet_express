@@ -4,11 +4,18 @@
 
 #include <random>
 #include <ctime>
+#include <cstring>
 #include "sector.h"
 
+#define SSIZE = 10;
 
 sector::sector(int *arr) {
     generate_sector(arr);
+    visited = true;
+}
+
+sector::sector(){
+    visited = false;
 }
 
 struct coordinate {
@@ -30,7 +37,7 @@ void sector::generate_sector(int *arr) {
         int x = astroid_arr[i].x_pos = map_size(generator);
         int y = astroid_arr[i].y_pos = map_size(generator);
 
-        if(!tryadd(x, y, 'O')){
+        if(!try_add(x, y, 'O')){
             i--;
         };
     }
@@ -40,7 +47,7 @@ void sector::generate_sector(int *arr) {
         int x = encounter_arr[i].x_pos = map_size(generator);
         int y = encounter_arr[i].y_pos = map_size(generator);
 
-        if(!tryadd(x, y, '*')){
+        if(!try_add(x, y, '*')){
             i--;
         };
     }
@@ -50,21 +57,12 @@ void sector::generate_sector(int *arr) {
         int x = planet_arr[i].x_pos = map_size(generator);
         int y = planet_arr[i].y_pos = map_size(generator);
 
-        if(!tryadd(x, y, '@')){
+        if(!try_add(x, y, '@')){
             i--;
         };
     }
     
 
-}
-
-bool sector::check_duplicates(int *arr, int size) {
-//    int* duplicates = arr;
-//    for (int i = 0; i < size; ++i) {
-//        for (int j = 0; j < size; ++j) {
-//            if(duplicates)
-//        }
-//    }
 }
 
 void sector::print_sector(IOHandler &h) {
@@ -78,7 +76,7 @@ void sector::print_sector(IOHandler &h) {
     }
 }
 
-bool sector::tryadd(int xpos, int ypos, char value) {
+bool sector::try_add(int xpos, int ypos, char value) {
     if(sector_map[xpos][ypos].is_empty()){
         sector_map[xpos][ypos].val = value;
         return true;
@@ -86,6 +84,31 @@ bool sector::tryadd(int xpos, int ypos, char value) {
         return false;
     }
 }
+
+sector::sector(sector &&other) noexcept {}
+
+sector &sector::operator=(sector &&other) noexcept {
+    if(&other == this){ return *this; }
+    //delete?
+    for (int i = 0; i < 10; ++i) {
+        memcpy(this->sector_map[i] , other.sector_map[i] , 10);
+    }
+    return *this;
+}
+
+sector::sector(const sector &other) noexcept {}
+
+sector &sector::operator=(const sector &other) noexcept {
+    if(&other == this){ return *this; }
+    //delete?
+    for (int i = 0; i < 10; ++i) {
+        memcpy(this->sector_map[i] , other.sector_map[i] , 10);
+    }
+
+    this->visited = other.visited;
+    return *this;
+}
+
 
 
 

@@ -15,6 +15,7 @@ headquarters::headquarters(player &p) {
 
 void headquarters::do_scan() {
     int ***scan_array;
+
     std::default_random_engine generator;
     generator.seed(time(0));
     std::uniform_int_distribution<int> astroid(0,9);
@@ -38,13 +39,18 @@ void headquarters::do_scan() {
     this->last_scan = scan_array;
 }
 
-void headquarters::visit_sector(int *arr) {
-    sector s{arr};
+void headquarters::visit_sector(int x, int y) {
+    sector s;
+
+    if(visited_sectors[x][y].visited){
+        s = visited_sectors[x][y];
+    } else {
+        s = sector(last_scan[x][y]);
+        visited_sectors[x][y] = s;
+        s.visited = true;
+    }
+
     s.print_sector(io_handler);
-}
-
-void headquarters::print_sector(sector s) {
-
 }
 
 

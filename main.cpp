@@ -19,7 +19,9 @@ int main() {
         handler.PrintLine("");
     }
 
-    hq.visit_sector(hq.last_scan[0][3]);
+    hq.visit_sector(0,3);
+
+    hq.visit_sector(0,3);
 
     return 0;
 }

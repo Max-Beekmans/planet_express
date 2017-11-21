@@ -11,13 +11,22 @@
 
 class sector {
 public:
-    sector(int arr[3]);
+    //rof
+    sector();
+    explicit sector(int arr[3]);
+    sector(const sector& other) noexcept;
+    sector(sector&& other) noexcept;
+
+    //operators
+    sector& operator=(sector&& other) noexcept ;
+    sector& operator=(const sector &other) noexcept ;
+
     void print_sector(IOHandler& h);
+    bool visited;
 private:
     void generate_sector(int arr[3]);
+    bool try_add(int xpos, int ypos, char value);
     sector_tile sector_map[10][10];
-    bool check_duplicates(int* arr, int size);
-    bool tryadd(int xpos, int ypos, char value);
 };
 
 
