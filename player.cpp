@@ -12,7 +12,6 @@ player::player(const char *name) {
     }
 }
 
-player::player(player &&other) {
-    this->ship = other.ship;
+player::player(player &&other) noexcept {
     this->name = other.name;
 }

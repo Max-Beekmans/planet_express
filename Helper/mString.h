@@ -13,10 +13,10 @@ public:
 
     mString& operator=(const mString& other)
     {
-        if(&other != this){
-            delete value;
-            value = other.value;
-        }
+        if(&other == this) { return *this; }
+
+//        delete value;
+//        value = other.value;
         return *this;
     }
 

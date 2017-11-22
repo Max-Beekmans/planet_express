@@ -11,19 +11,17 @@
 #include "player.h"
 #include "Helper/IOHandler.h"
 #include "sector.h"
+#include "scan.h"
 
 class headquarters {
 public:
-    headquarters(player& p);
+    explicit headquarters(player& p);
     void do_scan();
-    int*** last_scan;
     void visit_sector(int x, int y);
+    scan* last_scan;
 private:
     player p;
     IOHandler io_handler;
-    //int get_random(int min, int max);
-    sector visited_sectors[5][5];
-
 };
 
 

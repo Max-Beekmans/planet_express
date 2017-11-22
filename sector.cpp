@@ -18,6 +18,31 @@ sector::sector(){
     visited = false;
 }
 
+sector::sector(sector &&other) noexcept {}
+
+sector &sector::operator=(sector &&other) noexcept {
+    if(&other == this){ return *this; }
+    //delete?
+    for (int i = 0; i < 10; ++i) {
+        memcpy(this->sector_map[i] , other.sector_map[i] , 10);
+    }
+    return *this;
+}
+
+sector::sector(const sector &other) noexcept {}
+
+sector &sector::operator=(const sector &other) noexcept {
+    if(&other == this){ return *this; }
+    //delete?
+    for (int i = 0; i < 10; ++i) {
+        memcpy(this->sector_map[i] , other.sector_map[i] , 10);
+    }
+
+    this->visited = other.visited;
+    return *this;
+}
+
+
 struct coordinate {
     int x_pos;
     int y_pos;
@@ -84,31 +109,6 @@ bool sector::try_add(int xpos, int ypos, char value) {
         return false;
     }
 }
-
-sector::sector(sector &&other) noexcept {}
-
-sector &sector::operator=(sector &&other) noexcept {
-    if(&other == this){ return *this; }
-    //delete?
-    for (int i = 0; i < 10; ++i) {
-        memcpy(this->sector_map[i] , other.sector_map[i] , 10);
-    }
-    return *this;
-}
-
-sector::sector(const sector &other) noexcept {}
-
-sector &sector::operator=(const sector &other) noexcept {
-    if(&other == this){ return *this; }
-    //delete?
-    for (int i = 0; i < 10; ++i) {
-        memcpy(this->sector_map[i] , other.sector_map[i] , 10);
-    }
-
-    this->visited = other.visited;
-    return *this;
-}
-
 
 
 

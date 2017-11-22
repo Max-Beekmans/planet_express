@@ -5,20 +5,19 @@
 #ifndef PLANET_EXPRESS_PLAYER_H
 #define PLANET_EXPRESS_PLAYER_H
 
-#include "ship.h"
 #include "Helper/mString.h"
 
 class player {
 public:
-    player(const char* name = nullptr);
-    player(player&& other);
-    player&operator=(const player& other){
+    explicit player(const char* name = nullptr);
+    player(player&& other) noexcept ;
+    player&operator=(const player& other) noexcept {
         if(&other != this){
-            ship = {other.ship};
+            this->name = other.name;
         }
         return *this;
     }
-    ship ship;
+
     mString name;
 };
 
