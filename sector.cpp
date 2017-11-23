@@ -7,8 +7,6 @@
 #include <cstring>
 #include "sector.h"
 
-#define SSIZE = 10;
-
 sector::sector(int *arr) {
     generate_sector(arr);
     visited = true;
@@ -92,9 +90,9 @@ void sector::generate_sector(int *arr) {
 
 void sector::print_sector(IOHandler &h) {
     for (auto &i : this->sector_map) {
-        for (int j = 0; j < 10; ++j) {
+        for (auto &j : i) {
             h.Print(" ");
-            h.Print(i[j].val);
+            h.Print(j.val);
             h.Print(" ");
         }
         h.PrintLine(' ');
