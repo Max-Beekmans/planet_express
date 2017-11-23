@@ -46,11 +46,11 @@ sector &sector::operator=(const sector &other) noexcept {
     return *this;
 }
 
-void sector::place_ship(ship& ship) {
-    int x = ship.xpos;
-    int y = ship.ypos;
-    this->sector_map[x][y] = 'P';
-}
+//void sector::place_ship(ship& ship) {
+//    int x = ship.xpos;
+//    int y = ship.ypos;
+//    this->sector_map[x][y] = 'P';
+//}
 
 struct coordinate {
     int x_pos;
