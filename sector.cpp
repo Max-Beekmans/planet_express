@@ -5,21 +5,27 @@
 #include <random>
 #include <ctime>
 #include <cstring>
+
 #include "sector.h"
 
-sector::sector(int *arr) {
+sector::sector(int *arr, ship& ship) {
+    this->ship = ship;
     generate_sector(arr);
     visited = true;
 }
 
 sector::sector(){
+    ship = nullptr;
     visited = false;
 }
 
-sector::sector(sector &&other) noexcept {}
+sector::sector(sector &&other) noexcept {
+    this->ship = other.ship;
+}
 
 sector &sector::operator=(sector &&other) noexcept {
     if(&other == this){ return *this; }
+    this->ship = nullptr;
     //delete?
     for (int i = 0; i < 10; ++i) {
         memcpy(this->sector_map[i] , other.sector_map[i] , 10);
@@ -35,18 +41,23 @@ sector &sector::operator=(const sector &other) noexcept {
     for (int i = 0; i < 10; ++i) {
         memcpy(this->sector_map[i] , other.sector_map[i] , 10);
     }
-
+    this->ship = other.ship;
     this->visited = other.visited;
     return *this;
 }
 
+void sector::place_ship(ship& ship) {
+    int x = ship.xpos;
+    int y = ship.ypos;
+    this->sector_map[x][y] = 'P';
+}
 
 struct coordinate {
     int x_pos;
     int y_pos;
 };
 
-void sector::generate_sector(int *arr) {
+void sector::generate_sector(const int *arr) {
     coordinate astroid_arr[arr[0]];
     coordinate encounter_arr[arr[1]];
     coordinate planet_arr[arr[2]];
@@ -84,8 +95,6 @@ void sector::generate_sector(int *arr) {
             i--;
         };
     }
-    
-
 }
 
 void sector::print_sector(IOHandler &h) {
@@ -107,6 +116,10 @@ bool sector::try_add(int xpos, int ypos, char value) {
         return false;
     }
 }
+
+
+
+
 
 
 

@@ -9,6 +9,13 @@ ship::ship(int xpos, int ypos) {
     this->ypos = ypos;
 }
 
+ship::ship(ship &other) noexcept {}
+
+ship& ship::operator=(ship&& other) noexcept {
+    this->ypos = other.ypos;
+    this->xpos = other.xpos;
+    return *this;
+}
 
 int ship::move_left() {
     return xpos - 1;
@@ -25,3 +32,6 @@ int ship::move_up() {
 int ship::move_down() {
     return ypos + 1;
 }
+
+
+

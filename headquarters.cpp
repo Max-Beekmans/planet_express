@@ -5,10 +5,7 @@
 #include "headquarters.h"
 #include "sector.h"
 
-#include <random>
-#include <ctime>
-
-headquarters::headquarters(player &p) {
+headquarters::headquarters(player& p) {
     this->p = p;
     this->io_handler = {};
 }
@@ -25,7 +22,7 @@ void headquarters::visit_sector(int x, int y) {
     if(last_scan->visited_sectors[x][y].visited){
         s = last_scan->visited_sectors[x][y];
     } else {
-        s = sector(last_scan->scan_result[x][y]);
+        s = sector(last_scan->scan_result[x][y], p.ship);
         s.visited = true;
         last_scan->visited_sectors[x][y] = s;
     }
@@ -39,7 +36,7 @@ void headquarters::move_ship(int direction) {
             break;
         case 1:
             //move up
-
+            this->p.ship.move_left();
             break;
         case 2:
             //move down
@@ -53,6 +50,10 @@ void headquarters::move_ship(int direction) {
         default:
             break;
     }
+}
+
+void headquarters::move_encounters() {
+
 }
 
 

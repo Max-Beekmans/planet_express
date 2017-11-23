@@ -6,19 +6,16 @@
 #define PLANET_EXPRESS_PLAYER_H
 
 #include "Helper/mString.h"
+#include "ship.h"
 
 class player {
 public:
     explicit player(const char* name = nullptr);
     player(player&& other) noexcept ;
-    player&operator=(const player& other) noexcept {
-        if(&other != this){
-            this->name = other.name;
-        }
-        return *this;
-    }
+    player&operator=(const player& other) noexcept ;
 
     mString name;
+    ship ship;
 };
 
 

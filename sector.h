@@ -13,20 +13,22 @@ class sector {
 public:
     //rof
     sector();
-    explicit sector(int arr[3]);
+    sector(int arr[3], ship& ship);
     sector(const sector& other) noexcept;
     sector(sector&& other) noexcept;
 
     //operators
     sector& operator=(sector&& other) noexcept ;
-    sector& operator=(const sector &other) noexcept ;
+    sector& operator=(const sector& other) noexcept ;
 
     void print_sector(IOHandler& h);
     bool visited;
 private:
-    void generate_sector(int arr[3]);
+    void generate_sector(const int arr[3]);
+    void place_ship(ship& ship);
     bool try_add(int xpos, int ypos, char value);
     sector_tile sector_map[10][10];
+    ship ship;
 };
 
 

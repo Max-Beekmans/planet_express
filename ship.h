@@ -5,13 +5,11 @@
 #ifndef PLANET_EXPRESS_SHIP_H
 #define PLANET_EXPRESS_SHIP_H
 
-
-#include "sector.h"
-
 class ship {
 public:
-    ship(int xpos, int ypos);
-
+    explicit ship(int xpos = 0, int ypos = 0);
+    ship(ship &other) noexcept ;
+    ship&operator=(ship &&other) noexcept ;
     int move_left();
     int move_right();
     int move_up();

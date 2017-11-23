@@ -1,8 +1,12 @@
-#include "headquarters.h"
 #include "Helper/IOHandler.h"
+#include "ship.h"
+#include "headquarters.h"
+
+
 
 int main() {
 
+    ship s;
     player p{"Alberto"};
     headquarters hq{p};
 

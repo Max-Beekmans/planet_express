@@ -5,8 +5,9 @@
 #ifndef PLANET_EXPRESS_SCAN_H
 #define PLANET_EXPRESS_SCAN_H
 
-#include "Helper/IOHandler.h"
 #include "sector.h"
+#include "Helper/IOHandler.h"
+
 
 class scan {
 public:
