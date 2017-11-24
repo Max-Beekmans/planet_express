@@ -22,7 +22,8 @@ void headquarters::visit_sector(int x, int y) {
     if(last_scan->visited_sectors[x][y].visited){
         s = last_scan->visited_sectors[x][y];
     } else {
-        s = sector(last_scan->scan_result[x][y], p.ship);
+        s = {last_scan->scan_result[x][y], p.ship};
+        //s = sector(last_scan->scan_result[x][y], p.spaceShip);
         s.visited = true;
         last_scan->visited_sectors[x][y] = s;
     }

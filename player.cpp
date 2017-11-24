@@ -10,7 +10,10 @@ player::player(const char *name) {
     } else {
         this->name = mString{"Rodrigo"};
     }
+}
 
+player::player(const char *name, spaceShip ship) {
+    this->name = mString(name);
     this->ship = ship;
 }
 
@@ -22,7 +25,7 @@ player::player(player &&other) noexcept {
 player &player::operator=(const player &other) noexcept {
     if(&other != this){ return *this; }
     this->name = other.name;
-    this->ship = ship;
+    this->ship = {other.ship.xpos , other.ship.ypos};
     return *this;
 }
 

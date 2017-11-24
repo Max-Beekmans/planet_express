@@ -8,7 +8,7 @@
 
 #include "sector.h"
 
-sector::sector(int *arr, ship& ship) {
+sector::sector(int *arr, spaceShip& ship) {
     this->ship = ship;
     generate_sector(arr);
     visited = true;
@@ -19,7 +19,7 @@ sector::sector(){
 }
 
 sector::sector(sector &&other) noexcept {
-    this->ship = other.ship;
+    this->ship = {other.ship.xpos, other.ship.ypos};
 }
 
 sector &sector::operator=(sector &&other) noexcept {
@@ -40,16 +40,19 @@ sector &sector::operator=(const sector &other) noexcept {
     for (int i = 0; i < 10; ++i) {
         memcpy(this->sector_map[i] , other.sector_map[i] , 10);
     }
-    this->ship = other.ship;
+    this->ship = {other.ship.xpos, other.ship.ypos};
     this->visited = other.visited;
     return *this;
 }
 
-//void sector::place_ship(ship& ship) {
-//    int x = ship.xpos;
-//    int y = ship.ypos;
-//    this->sector_map[x][y] = 'P';
-//}
+void sector::place_ship() {
+    int x = ship.xpos;
+    int y = ship.ypos;
+    if(sector_map[x][y].is_empty()){
+        this->sector_map[x][y].val = 'P';
+    }
+
+}
 
 struct coordinate {
     int x_pos;
@@ -94,6 +97,8 @@ void sector::generate_sector(const int *arr) {
             i--;
         };
     }
+
+   this->place_ship();
 }
 
 void sector::print_sector(IOHandler &h) {

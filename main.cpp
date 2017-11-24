@@ -1,13 +1,13 @@
 #include "Helper/IOHandler.h"
-#include "ship.h"
+#include "spaceShip.h"
 #include "headquarters.h"
 
 
 
 int main() {
 
-    ship s;
-    player p{"Alberto"};
+    spaceShip s {};
+    player p{"Alberto" , s};
     headquarters hq{p};
 
     IOHandler handler{};

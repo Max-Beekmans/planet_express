@@ -8,7 +8,7 @@
 
 #include <random>
 
-#include "ship.h"
+#include "spaceShip.h"
 #include "player.h"
 #include "Helper/IOHandler.h"
 #include "sector.h"

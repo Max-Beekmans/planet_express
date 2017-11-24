@@ -5,7 +5,7 @@
 #ifndef PLANET_EXPRESS_SECTOR_H
 #define PLANET_EXPRESS_SECTOR_H
 
-#include "ship.h"
+#include "spaceShip.h"
 #include "Helper/IOHandler.h"
 #include "sector_tile.h"
 
@@ -13,7 +13,7 @@ class sector {
 public:
     //rof
     sector();
-    sector(int arr[3], ship& ship);
+    sector(int arr[3], spaceShip& ship);
     sector(const sector& other) noexcept;
     sector(sector&& other) noexcept;
 
@@ -25,10 +25,10 @@ public:
     bool visited;
 private:
     void generate_sector(const int arr[3]);
-    void place_ship(ship& ship);
+    void place_ship();
     bool try_add(int xpos, int ypos, char value);
     sector_tile sector_map[10][10];
-    ship ship;
+    spaceShip ship;
 };
 
 

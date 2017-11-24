@@ -6,18 +6,19 @@
 #define PLANET_EXPRESS_PLAYER_H
 
 #include "Helper/mString.h"
-#include "ship.h"
+#include "spaceShip.h"
 
 class player {
 public:
     explicit player(const char* name = nullptr);
+    player(const char* name, spaceShip ship);
     player(player&& other) noexcept ;
     player(player& other) noexcept ;
     player&operator=(const player& other) noexcept ;
     player&operator=(player&& other) noexcept ;
 
     mString name;
-    ship ship;
+    spaceShip ship;
 };
 
 
