@@ -15,7 +15,6 @@ sector::sector(int *arr, ship& ship) {
 }
 
 sector::sector(){
-    ship = nullptr;
     visited = false;
 }
 
@@ -25,7 +24,7 @@ sector::sector(sector &&other) noexcept {
 
 sector &sector::operator=(sector &&other) noexcept {
     if(&other == this){ return *this; }
-    this->ship = nullptr;
+    this->ship = other.ship;
     //delete?
     for (int i = 0; i < 10; ++i) {
         memcpy(this->sector_map[i] , other.sector_map[i] , 10);

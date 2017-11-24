@@ -9,7 +9,9 @@ class ship {
 public:
     explicit ship(int xpos = 0, int ypos = 0);
     ship(ship &other) noexcept ;
+    ship(ship &&other) noexcept ;
     ship&operator=(ship &&other) noexcept ;
+    ship&operator=(ship &other) noexcept ;
     int move_left();
     int move_right();
     int move_up();

@@ -19,10 +19,20 @@ player::player(player &&other) noexcept {
     this->ship = other.ship;
 }
 
-player &player::operator=(const player &other) {
-    if(&other != this){
-        this->name = other.name;
-        this->ship = other.ship;
-    }
+player &player::operator=(const player &other) noexcept {
+    if(&other != this){ return *this; }
+    this->name = other.name;
+    this->ship = ship;
+    return *this;
+}
+
+player::player(player &other) noexcept {
+    this->name = other.name;
+    this->ship = other.ship;
+}
+
+player &player::operator=(player &&other) noexcept {
+    this->name = other.name;
+    this->ship = other.ship;
     return *this;
 }

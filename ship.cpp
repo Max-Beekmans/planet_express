@@ -11,7 +11,17 @@ ship::ship(int xpos, int ypos) {
 
 ship::ship(ship &other) noexcept {}
 
-ship& ship::operator=(ship&& other) noexcept {
+ship &ship::operator=(ship &other) noexcept {
+    if(&other == this){ return *this; }
+    this->xpos = other.xpos;
+    this->ypos = other.ypos;
+    return *this;
+}
+
+ship::ship(ship &&other) noexcept {}
+
+ship& ship::operator=(ship &&other) noexcept {
+    if(&other == this){ return *this; }
     this->ypos = other.ypos;
     this->xpos = other.xpos;
     return *this;

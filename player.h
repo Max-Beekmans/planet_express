@@ -12,7 +12,9 @@ class player {
 public:
     explicit player(const char* name = nullptr);
     player(player&& other) noexcept ;
+    player(player& other) noexcept ;
     player&operator=(const player& other) noexcept ;
+    player&operator=(player&& other) noexcept ;
 
     mString name;
     ship ship;
