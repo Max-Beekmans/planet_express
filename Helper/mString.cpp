@@ -16,5 +16,9 @@ mString::mString() {
     this->value = nullptr;
 }
 
+const char *mString::GetValue() {
+    return this->value;
+}
+
 
 

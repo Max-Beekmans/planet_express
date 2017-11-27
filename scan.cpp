@@ -10,9 +10,7 @@
 
 //scan::scan(const scan &other) noexcept {}
 
-scan::scan() {
-
-}
+scan::scan() = default;
 
 scan::~scan() {
     for (int j = 0; j < 5; ++j) {

@@ -14,11 +14,12 @@ public:
     mString& operator=(const mString& other)
     {
         if(&other == this) { return *this; }
-
-//        delete value;
-//        value = other.value;
+        this->value = nullptr;
+        this->value = other.value;
         return *this;
     }
+
+    const char* GetValue();
 
 private:
     const char *value;

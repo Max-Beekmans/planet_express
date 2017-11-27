@@ -10,7 +10,7 @@
 
 class player {
 public:
-    explicit player(const char* name = nullptr);
+    player(const char* name = nullptr);
     player(const char* name, spaceShip ship);
     player(player&& other) noexcept ;
     player(player& other) noexcept ;

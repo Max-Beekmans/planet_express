@@ -16,7 +16,8 @@
 
 class headquarters {
 public:
-    explicit headquarters(player& p);
+    headquarters();
+    headquarters(player& p, IOHandler ioHandler);
     void do_scan();
     void visit_sector(int x, int y);
     //direction ( 1 = up, 2 = down, 3 = left, 4 = right )

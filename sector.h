@@ -6,8 +6,8 @@
 #define PLANET_EXPRESS_SECTOR_H
 
 #include "spaceShip.h"
-#include "Helper/IOHandler.h"
 #include "sector_tile.h"
+#include "Helper/IOHandler.h"
 
 class sector {
 public:

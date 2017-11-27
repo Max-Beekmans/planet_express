@@ -24,15 +24,12 @@ player::player(player &&other) noexcept {
 
 player &player::operator=(const player &other) noexcept {
     if(&other != this){ return *this; }
-    this->name = other.name;
+    this->name = {other.name};
     this->ship = {other.ship.xpos , other.ship.ypos};
     return *this;
 }
 
-player::player(player &other) noexcept {
-    this->name = other.name;
-    this->ship = other.ship;
-}
+player::player(player &other) noexcept {}
 
 player &player::operator=(player &&other) noexcept {
     this->name = other.name;

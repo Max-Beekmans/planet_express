@@ -5,9 +5,11 @@
 #include "headquarters.h"
 #include "sector.h"
 
-headquarters::headquarters(player& p) {
+headquarters::headquarters() = default;
+
+headquarters::headquarters(player& p, IOHandler ioHandler) {
     this->p = p;
-    this->io_handler = {};
+    this->io_handler = ioHandler;
 }
 
 void headquarters::do_scan() {
@@ -23,7 +25,7 @@ void headquarters::visit_sector(int x, int y) {
         s = last_scan->visited_sectors[x][y];
     } else {
         s = {last_scan->scan_result[x][y], p.ship};
-        //s = sector(last_scan->scan_result[x][y], p.spaceShip);
+        //s = sector(last_scan->scan_result[x][y], p.ship);
         s.visited = true;
         last_scan->visited_sectors[x][y] = s;
     }
@@ -56,5 +58,7 @@ void headquarters::move_ship(int direction) {
 void headquarters::move_encounters() {
 
 }
+
+
 
 
