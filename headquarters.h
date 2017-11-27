@@ -8,25 +8,23 @@
 
 #include <random>
 
-#include "spaceShip.h"
 #include "player.h"
-#include "Helper/IOHandler.h"
-#include "sector.h"
+#include "Helper/IOhandler.h"
 #include "scan.h"
 
 class headquarters {
 public:
     headquarters();
-    headquarters(player& p, IOHandler ioHandler);
+    headquarters(player& p, IOhandler ioHandler);
     void do_scan();
     void visit_sector(int x, int y);
     //direction ( 1 = up, 2 = down, 3 = left, 4 = right )
     void move_ship(int direction);
     void move_encounters();
-    scan* last_scan;
+    scan* last_scan = new scan();
 private:
     player p;
-    IOHandler io_handler;
+    IOhandler io_handler;
 };
 
 

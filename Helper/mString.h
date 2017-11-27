@@ -5,24 +5,22 @@
 #ifndef PLANET_EXPRESS_MSTRING_H
 #define PLANET_EXPRESS_MSTRING_H
 
+#include <iostream>
+#include <ostream>
+
 class mString {
 public:
     mString();
     mString(const char* val);
     mString(const mString& other);
 
-    mString& operator=(const mString& other)
-    {
-        if(&other == this) { return *this; }
-        this->value = nullptr;
-        this->value = other.value;
-        return *this;
-    }
+    mString& operator=(const mString& other);
+    std::ostream &operator<<(std::ostream& output);
 
-    const char* GetValue();
-
+    const char* GetValue() const;
+    void substr(char*& first, char*& second);
 private:
-    const char *value;
+    char value[128];
 };
 
 

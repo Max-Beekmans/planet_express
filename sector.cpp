@@ -101,7 +101,7 @@ void sector::generate_sector(const int *arr) {
    this->place_ship();
 }
 
-void sector::print_sector(IOHandler &h) {
+void sector::print_sector(IOhandler &h) {
     for (auto &i : this->sector_map) {
         for (auto &j : i) {
             h.Print(" ");

@@ -7,10 +7,7 @@
 
 headquarters::headquarters() = default;
 
-headquarters::headquarters(player& p, IOHandler ioHandler) {
-    this->p = p;
-    this->io_handler = ioHandler;
-}
+headquarters::headquarters(player& player, IOhandler ioHandler) : p(player) , io_handler(ioHandler) {}
 
 void headquarters::do_scan() {
     //delete last_scan;
@@ -58,6 +55,8 @@ void headquarters::move_ship(int direction) {
 void headquarters::move_encounters() {
 
 }
+
+
 
 
 

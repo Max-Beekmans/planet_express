@@ -6,7 +6,7 @@
 #define PLANET_EXPRESS_SCAN_H
 
 #include "sector.h"
-#include "Helper/IOHandler.h"
+#include "Helper/IOhandler.h"
 
 
 class scan {
@@ -22,7 +22,7 @@ public:
     //scan&operator=(const scan& other) noexcept ;
 
     void do_scan();
-    void print_scan(IOHandler& h);
+    void print_scan(IOhandler& h);
     int*** scan_result;
     sector visited_sectors[5][5];
 private:

@@ -4,9 +4,13 @@
 
 #include "player.h"
 
-player::player(const char *name) {
-    if(name != nullptr){
-        this->name = mString{name};
+player::player() {
+    this->name = mString{"Rodrigo"};
+}
+
+player::player(const char * input_name){
+    if(input_name != nullptr){
+        this->name = mString{input_name};
     } else {
         this->name = mString{"Rodrigo"};
     }
@@ -36,3 +40,5 @@ player &player::operator=(player &&other) noexcept {
     this->ship = other.ship;
     return *this;
 }
+
+

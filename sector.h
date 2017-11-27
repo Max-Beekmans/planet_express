@@ -7,7 +7,7 @@
 
 #include "spaceShip.h"
 #include "sector_tile.h"
-#include "Helper/IOHandler.h"
+#include "Helper/IOhandler.h"
 
 class sector {
 public:
@@ -21,7 +21,7 @@ public:
     sector& operator=(sector&& other) noexcept ;
     sector& operator=(const sector& other) noexcept ;
 
-    void print_sector(IOHandler& h);
+    void print_sector(IOhandler& h);
     bool visited;
 private:
     void generate_sector(const int arr[3]);

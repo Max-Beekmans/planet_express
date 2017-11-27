@@ -10,7 +10,9 @@
 
 //scan::scan(const scan &other) noexcept {}
 
-scan::scan() = default;
+scan::scan() {
+    scan_result = nullptr;
+}
 
 scan::~scan() {
     for (int j = 0; j < 5; ++j) {
@@ -42,7 +44,7 @@ scan &scan::operator=(scan &&other) noexcept {
     return *this;
 }
 
-void scan::print_scan(IOHandler &h) {
+void scan::print_scan(IOhandler &h) {
     for (int i = 0; i < OUTTER_SIZE; ++i) {
         for (int j = 0; j < OUTTER_SIZE; ++j) {
             for (int k = 0; k < INNER_SIZE; ++k) {

@@ -8,7 +8,7 @@
 #include <iostream>
 #include "mString.h"
 
-class IOHandler {
+class IOhandler {
 public:
     template <class T>
     void Print(T obj);
@@ -16,15 +16,19 @@ public:
     void PrintLine(T obj);
 
     mString GetLine();
+
+    //not really but just whitespace
+    void ClearConsole();
+    void PrintDivider();
 };
 
 template<class T>
-void IOHandler::Print(T obj) {
+void IOhandler::Print(T obj) {
     std::cout << obj;
 }
 
 template<class T>
-void IOHandler::PrintLine(T obj) {
+void IOhandler::PrintLine(T obj) {
     std::cout << obj << std::endl;
 }
 

@@ -1,13 +1,8 @@
-#include "spaceShip.h"
-#include "Helper/IOHandler.h"
-#include "headquarters.h"
+#include "Helper/IOhandler.h"
 #include "game.h"
 
 int main() {
-
-    spaceShip s {};
-    player p{"Alberto" , s};
-    IOHandler handler{};
-    game game = {handler, p};
+    IOhandler handler{};
+    game game {handler};
     return 0;
 }
