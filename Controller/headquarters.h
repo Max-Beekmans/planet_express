@@ -8,9 +8,9 @@
 
 #include <random>
 
-#include "player.h"
-#include "Helper/IOhandler.h"
-#include "scan.h"
+#include "../Model/player.h"
+#include "../Helper/IOhandler.h"
+#include "../Model/scan.h"
 
 class headquarters {
 public:
@@ -18,8 +18,7 @@ public:
     headquarters(player& p, IOhandler ioHandler);
     void do_scan();
     void visit_sector(int x, int y);
-    //direction ( 1 = up, 2 = down, 3 = left, 4 = right )
-    void move_ship(int direction);
+
     void move_encounters();
     scan* last_scan = new scan();
 private:

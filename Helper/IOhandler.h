@@ -16,6 +16,7 @@ public:
     void PrintLine(T obj);
 
     mString GetLine();
+    int GetInt();
 
     //not really but just whitespace
     void ClearConsole();

@@ -7,7 +7,7 @@
 
 #include "spaceShip.h"
 #include "sector_tile.h"
-#include "Helper/IOhandler.h"
+#include "../Helper/IOhandler.h"
 
 class sector {
 public:

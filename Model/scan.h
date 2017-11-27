@@ -6,7 +6,7 @@
 #define PLANET_EXPRESS_SCAN_H
 
 #include "sector.h"
-#include "Helper/IOhandler.h"
+#include "../Helper/IOhandler.h"
 
 
 class scan {

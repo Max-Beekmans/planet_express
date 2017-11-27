@@ -3,7 +3,7 @@
 //
 
 #include "headquarters.h"
-#include "sector.h"
+#include "../Model/sector.h"
 
 headquarters::headquarters() = default;
 
@@ -30,27 +30,6 @@ void headquarters::visit_sector(int x, int y) {
     s.print_sector(io_handler);
 }
 
-void headquarters::move_ship(int direction) {
-    switch (direction) {
-        case 0:
-            break;
-        case 1:
-            //move up
-            this->p.ship.move_left();
-            break;
-        case 2:
-            //move down
-            break;
-        case 3:
-            //move left
-            break;
-        case 4:
-            //move right
-            break;
-        default:
-            break;
-    }
-}
 
 void headquarters::move_encounters() {
 

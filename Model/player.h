@@ -5,7 +5,7 @@
 #ifndef PLANET_EXPRESS_PLAYER_H
 #define PLANET_EXPRESS_PLAYER_H
 
-#include "Helper/mString.h"
+#include "../Helper/mString.h"
 #include "spaceShip.h"
 
 class player {

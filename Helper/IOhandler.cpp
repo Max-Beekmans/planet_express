@@ -11,6 +11,13 @@ mString IOhandler::GetLine() {
     return mstr;
 }
 
+int IOhandler::GetInt() {
+    int x = 0;
+    std::cin >> x;
+    return x;
+}
+
+
 void IOhandler::ClearConsole() {
     for (int i = 0; i < 50; ++i) {
         std::cout << '\n';
@@ -21,3 +28,4 @@ void IOhandler::ClearConsole() {
 void IOhandler::PrintDivider() {
     std::cout << std::endl << "_____________________________________________" << std::endl;
 }
+
