@@ -18,7 +18,6 @@ public:
     int move_down();
     int xpos;
     int ypos;
-
 };
 
 

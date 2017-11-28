@@ -13,50 +13,59 @@ void game::run_game() {
     handler.Print(player1.name.GetValue());
     handler.PrintDivider();
     handler.ClearConsole();
-    hq.do_scan();
-    hq.visit_sector(0,0);
 
-    int x = 8;
-    while(x != 0){
-        x = handler.GetInt();
-        handle_command(x);
-        handler.ClearConsole();
-        hq.visit_sector(0,0);
+    //headquarters init task
+    hq.do_scan();
+    hq.enter_sector(0, 0, 0, 0);
+    while(true){
+        do_turn();
     }
+
 }
 
-game::game(IOhandler &handler){
+game::game(IOhandler &handler) : hq(handler){
     this->handler = handler;
     run_game();
-    this->hq = headquarters(player1 , handler);
 }
 
-void game::handle_command(const int command_num) {
+bool game::handle_command(const int command_num) {
     switch(command_num) {
         case 0:
+            //WILL LEAK MEMORY SCAN IS NOT CLEARED ON THIS CALL.
+            //TEMP ESCAPE
             exit(0);
+            //TODO FIX THIS!!!!!!
         case 1:
             player1.ship.move_up();
-            break;
+            return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
         case 2:
             player1.ship.move_down();
-            break;
+            return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
         case 3:
             player1.ship.move_left();
-            break;
+            return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
         case 4:
             player1.ship.move_right();
-            break;
+            return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
         case 5:
             //pick up package (only near planet)
-            break;
+            return true;
         case 6:
             //look at package (only if package in inventory)
-            break;
+            return true;
         case 7:
             //deliver package (only near delivery planet)
-            break;
+            return true;
         default:
-            break;
+            handler.PrintLine("Invalid command");
+            return false;
     }
+}
+
+void game::do_turn() {
+    int in = handler.GetInt();
+    while(!handle_command(in)){
+        handler.PrintLine("can't perform action command");
+        in = handler.GetInt();
+    };
 }

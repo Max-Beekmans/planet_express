@@ -15,7 +15,8 @@ public:
     explicit game(IOhandler& handler);
     void run_game();
 private:
-    void handle_command(const int command_num);
+    bool handle_command(int command_num);
+    void do_turn();
 
     IOhandler handler;
     player player1;

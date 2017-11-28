@@ -8,8 +8,9 @@
 
 #include "sector.h"
 
-sector::sector(int *arr, spaceShip& ship) {
-    this->ship = ship;
+sector::sector(int *arr, int x, int y) {
+    this->sector_x = x;
+    this->sector_y = y;
     generate_sector(arr);
     visited = true;
 }
@@ -18,17 +19,14 @@ sector::sector(){
     visited = false;
 }
 
-sector::sector(sector &&other) noexcept {
-    this->ship = {other.ship.xpos, other.ship.ypos};
-}
+sector::sector(sector &&other) noexcept {}
 
 sector &sector::operator=(sector &&other) noexcept {
     if(&other == this){ return *this; }
-    this->ship = other.ship;
-    //delete?
     for (int i = 0; i < 10; ++i) {
         memcpy(this->sector_map[i] , other.sector_map[i] , 10);
     }
+    this->visited = other.visited;
     return *this;
 }
 
@@ -40,18 +38,18 @@ sector &sector::operator=(const sector &other) noexcept {
     for (int i = 0; i < 10; ++i) {
         memcpy(this->sector_map[i] , other.sector_map[i] , 10);
     }
-    this->ship = {other.ship.xpos, other.ship.ypos};
     this->visited = other.visited;
     return *this;
 }
 
-void sector::place_ship() {
-    int x = ship.xpos;
-    int y = ship.ypos;
-    if(sector_map[x][y].is_empty()){
-        this->sector_map[x][y].val = 'P';
+bool sector::place_ship(int ship_x, int ship_y) {
+    if(try_add(ship_x , ship_y , 'P')){
+        sector_map[this->ship_x][this->ship_y].val = '.';
+        this->ship_x = ship_x;
+        this->ship_y = ship_y;
+        return true;
     }
-
+    return false;
 }
 
 struct coordinate {
@@ -97,8 +95,6 @@ void sector::generate_sector(const int *arr) {
             i--;
         };
     }
-
-   this->place_ship();
 }
 
 void sector::print_sector(IOhandler &h) {

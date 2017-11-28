@@ -28,19 +28,23 @@ spaceShip& spaceShip::operator=(spaceShip &&other) noexcept {
 }
 
 int spaceShip::move_left() {
-    return xpos - 1;
+    xpos--;
+    return xpos;
 }
 
 int spaceShip::move_right() {
-    return xpos + 1;
+    xpos++;
+    return xpos;
 }
 
 int spaceShip::move_up() {
-    return ypos - 1;
+    ypos--;
+    return ypos;
 }
 
 int spaceShip::move_down() {
-    return ypos + 1;
+    ypos++;
+    return ypos;
 }
 
 
