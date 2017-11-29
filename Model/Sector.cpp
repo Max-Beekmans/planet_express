@@ -6,22 +6,22 @@
 #include <ctime>
 #include <cstring>
 
-#include "sector.h"
+#include "Sector.h"
 
-sector::sector(int *arr, int x, int y) {
+Sector::Sector(int *arr, int x, int y) {
     this->sector_x = x;
     this->sector_y = y;
     generate_sector(arr);
     visited = true;
 }
 
-sector::sector(){
+Sector::Sector(){
     visited = false;
 }
 
-sector::sector(sector &&other) noexcept {}
+Sector::Sector(Sector &&other) noexcept {}
 
-sector &sector::operator=(sector &&other) noexcept {
+Sector &Sector::operator=(Sector &&other) noexcept {
     if(&other == this){ return *this; }
     for (int i = 0; i < 10; ++i) {
         memcpy(this->sector_map[i] , other.sector_map[i] , 10);
@@ -30,9 +30,9 @@ sector &sector::operator=(sector &&other) noexcept {
     return *this;
 }
 
-sector::sector(const sector &other) noexcept {}
+Sector::Sector(const Sector &other) noexcept {}
 
-sector &sector::operator=(const sector &other) noexcept {
+Sector &Sector::operator=(const Sector &other) noexcept {
     if(&other == this){ return *this; }
     //delete?
     for (int i = 0; i < 10; ++i) {
@@ -42,11 +42,13 @@ sector &sector::operator=(const sector &other) noexcept {
     return *this;
 }
 
-bool sector::place_ship(int ship_x, int ship_y) {
+bool Sector::place_ship(int ship_x, int ship_y) {
     if(try_add(ship_x , ship_y , 'P')){
-        sector_map[this->ship_x][this->ship_y].val = '.';
-        this->ship_x = ship_x;
-        this->ship_y = ship_y;
+        if(ship_x != this->ship_x || ship_y != this->ship_y){
+            sector_map[this->ship_x][this->ship_y].val = '.';
+            this->ship_x = ship_x;
+            this->ship_y = ship_y;
+        }
         return true;
     }
     return false;
@@ -57,7 +59,7 @@ struct coordinate {
     int y_pos;
 };
 
-void sector::generate_sector(const int *arr) {
+void Sector::generate_sector(const int *arr) {
     coordinate astroid_arr[arr[0]];
     coordinate encounter_arr[arr[1]];
     coordinate planet_arr[arr[2]];
@@ -97,7 +99,7 @@ void sector::generate_sector(const int *arr) {
     }
 }
 
-void sector::print_sector(IOhandler &h) {
+void Sector::print_sector(IOHandler &h) {
     for (auto &i : this->sector_map) {
         for (auto &j : i) {
             h.Print(" ");
@@ -108,7 +110,7 @@ void sector::print_sector(IOhandler &h) {
     }
 }
 
-bool sector::try_add(int xpos, int ypos, char value) {
+bool Sector::try_add(int xpos, int ypos, char value) {
     if(sector_map[xpos][ypos].is_empty()){
         sector_map[xpos][ypos].val = value;
         return true;

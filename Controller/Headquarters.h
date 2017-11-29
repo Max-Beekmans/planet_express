@@ -8,22 +8,22 @@
 
 #include <random>
 
-#include "../Helper/IOhandler.h"
-#include "../Model/scan.h"
+#include "../Helper/IOHandler.h"
+#include "../Model/Scan.h"
 
-class headquarters {
+class Headquarters {
 public:
-    explicit headquarters(IOhandler ioHandler);
+    explicit Headquarters(IOHandler ioHandler);
     void do_scan();
     void enter_sector(int x, int y, int ship_x, int ship_y);
     void leave_sector();
 
     bool update_ship(int x, int y);
     void update_encounters();
-    scan* last_scan = new scan();
+    Scan* last_scan = new Scan();
 private:
-    IOhandler io_handler;
-    sector current_sector;
+    IOHandler io_handler;
+    Sector current_sector;
 };
 
 

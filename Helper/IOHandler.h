@@ -6,16 +6,16 @@
 #define PLANET_EXPRESS_IOHANDLER_H
 
 #include <iostream>
-#include "mString.h"
+#include "MyString.h"
 
-class IOhandler {
+class IOHandler {
 public:
     template <class T>
     void Print(T obj);
     template <class T>
     void PrintLine(T obj);
 
-    mString GetLine();
+    MyString GetLine();
     int GetInt();
 
     //not really but just whitespace
@@ -24,12 +24,12 @@ public:
 };
 
 template<class T>
-void IOhandler::Print(T obj) {
+void IOHandler::Print(T obj) {
     std::cout << obj;
 }
 
 template<class T>
-void IOhandler::PrintLine(T obj) {
+void IOHandler::PrintLine(T obj) {
     std::cout << obj << std::endl;
 }
 

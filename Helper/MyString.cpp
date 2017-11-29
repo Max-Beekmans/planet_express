@@ -3,24 +3,24 @@
 //
 
 #include <cstring>
-#include "mString.h"
+#include "MyString.h"
 
-mString::mString() = default;
+MyString::MyString() = default;
 
-mString::mString(const char* val) {
+MyString::MyString(const char* val) {
     strcpy(value, val);
     //this->value = val;
 }
 
-mString::mString(const mString &other) {
+MyString::MyString(const MyString &other) {
     strcpy(this->value, other.value);
 }
 
-const char* mString::GetValue() const {
+const char* MyString::GetValue() const {
     return this->value;
 }
 
-mString &mString::operator=(const mString &other) {
+MyString &MyString::operator=(const MyString &other) {
     if(&other == this) { return *this; }
 //
     strcpy(value, other.value);
@@ -28,11 +28,11 @@ mString &mString::operator=(const mString &other) {
     return *this;
 }
 
-std::ostream &mString::operator<<(std::ostream &output) {
+std::ostream &MyString::operator<<(std::ostream &output) {
     return output << this->GetValue();
 }
 
-void mString::substr(char*& first, char*& second) {
+void MyString::substr(char*& first, char*& second) {
     const char* delim{ ";" };
     first = strtok(value, delim);
     second = strtok(nullptr, delim);

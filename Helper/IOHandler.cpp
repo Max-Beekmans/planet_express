@@ -2,30 +2,30 @@
 // Created by MaxBe on 11/27/2017.
 //
 
-#include "IOhandler.h"
+#include "IOHandler.h"
 
-mString IOhandler::GetLine() {
+MyString IOHandler::GetLine() {
     char str[64];
     std::cin >> str;
-    mString mstr = {str};
+    MyString mstr = {str};
     return mstr;
 }
 
-int IOhandler::GetInt() {
+int IOHandler::GetInt() {
     int x = 0;
     std::cin >> x;
     return x;
 }
 
 
-void IOhandler::ClearConsole() {
-    for (int i = 0; i < 50; ++i) {
+void IOHandler::ClearConsole() {
+    for (int i = 0; i < 20; ++i) {
         std::cout << '\n';
     }
     std::cout << std::endl;
 }
 
-void IOhandler::PrintDivider() {
+void IOHandler::PrintDivider() {
     std::cout << std::endl << "_____________________________________________" << std::endl;
 }
 

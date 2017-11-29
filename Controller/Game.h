@@ -6,21 +6,22 @@
 #define PLANET_EXPRESS_GAME_H
 
 
-#include "../Helper/IOhandler.h"
-#include "../Model/player.h"
-#include "headquarters.h"
+#include "../Helper/IOHandler.h"
+#include "../Model/Player.h"
+#include "Headquarters.h"
 
-class game {
+class Game {
 public:
-    explicit game(IOhandler& handler);
+    explicit Game(IOHandler& handler);
     void run_game();
 private:
     bool handle_command(int command_num);
     void do_turn();
 
-    IOhandler handler;
-    player player1;
-    headquarters hq;
+    int turn_nr = 0;
+    IOHandler handler;
+    Player player1;
+    Headquarters hq;
 };
 
 

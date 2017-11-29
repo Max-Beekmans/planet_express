@@ -1,8 +1,8 @@
-#include "Helper/IOhandler.h"
-#include "Controller/game.h"
+#include "Helper/IOHandler.h"
+#include "Controller/Game.h"
 
 int main() {
-    IOhandler handler{};
-    game game {handler};
+    IOHandler handler{};
+    Game game {handler};
     return 0;
 }

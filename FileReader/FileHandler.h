@@ -6,7 +6,7 @@
 #define PLANET_EXPRESS_FILE_HANDLER_H
 
 
-class file_handler {
+class FileHandler {
 
 };
 

@@ -3,18 +3,17 @@
 //
 
 #include <cstring>
-#include "game.h"
+#include "Game.h"
 
-void game::run_game() {
+void Game::run_game() {
     handler.PrintLine("Welcome to planet express. Now hurry and tell me your name!");
-    mString player_name = mString(handler.GetLine());
-    player1 = player(player_name.GetValue());
+    MyString player_name = MyString(handler.GetLine());
+    player1 = Player(player_name.GetValue());
     handler.Print("Great welcome to the club ");
     handler.Print(player1.name.GetValue());
-    handler.PrintDivider();
     handler.ClearConsole();
 
-    //headquarters init task
+    //Headquarters init task
     hq.do_scan();
     hq.enter_sector(0, 0, 0, 0);
     while(true){
@@ -23,12 +22,12 @@ void game::run_game() {
 
 }
 
-game::game(IOhandler &handler) : hq(handler){
+Game::Game(IOHandler &handler) : hq(handler){
     this->handler = handler;
     run_game();
 }
 
-bool game::handle_command(const int command_num) {
+bool Game::handle_command(const int command_num) {
     switch(command_num) {
         case 0:
             //WILL LEAK MEMORY SCAN IS NOT CLEARED ON THIS CALL.
@@ -62,10 +61,14 @@ bool game::handle_command(const int command_num) {
     }
 }
 
-void game::do_turn() {
+void Game::do_turn() {
     int in = handler.GetInt();
     while(!handle_command(in)){
         handler.PrintLine("can't perform action command");
         in = handler.GetInt();
     };
+    handler.PrintDivider();
+    handler.Print("Turn: ");
+    handler.PrintLine(this->turn_nr);
+
 }

@@ -8,13 +8,13 @@
 #include <iostream>
 #include <ostream>
 
-class mString {
+class MyString {
 public:
-    mString();
-    mString(const char* val);
-    mString(const mString& other);
+    MyString();
+    MyString(const char* val);
+    MyString(const MyString& other);
 
-    mString& operator=(const mString& other);
+    MyString& operator=(const MyString& other);
     std::ostream &operator<<(std::ostream& output);
 
     const char* GetValue() const;

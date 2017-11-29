@@ -5,13 +5,13 @@
 #ifndef PLANET_EXPRESS_SHIP_H
 #define PLANET_EXPRESS_SHIP_H
 
-class spaceShip {
+class SpaceShip {
 public:
-    spaceShip(int xpos = 0, int ypos = 0);
-    spaceShip(spaceShip &other) noexcept ;
-    spaceShip(spaceShip &&other) noexcept ;
-    spaceShip&operator=(spaceShip &&other) noexcept ;
-    spaceShip&operator=(spaceShip &other) noexcept ;
+    SpaceShip(int xpos = 0, int ypos = 0);
+    SpaceShip(SpaceShip &other) noexcept ;
+    SpaceShip(SpaceShip &&other) noexcept ;
+    SpaceShip&operator=(SpaceShip &&other) noexcept ;
+    SpaceShip&operator=(SpaceShip &other) noexcept ;
     int move_left();
     int move_right();
     int move_up();
