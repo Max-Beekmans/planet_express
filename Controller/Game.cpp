@@ -14,8 +14,18 @@ void Game::run_game() {
     handler.ClearConsole();
 
     //Headquarters init task
+    handler.PrintLine("Scanning....");
     hq.do_scan();
-    hq.enter_sector(0, 0, 0, 0);
+    handler.PrintLine("I've found 25 sectors on the scan!");
+    handler.PrintLine("Please enter an x and an y");
+    int x = handler.GetInt();
+    int y = handler.GetInt();
+    if(x == 0 || y == 0){
+        hq.enter_sector(x, y, 0, 0);
+    } else {
+        handler.PrintLine("can only enter outside sectors");
+    }
+
     while(true){
         do_turn();
     }
@@ -67,6 +77,8 @@ void Game::do_turn() {
         handler.PrintLine("can't perform action command");
         in = handler.GetInt();
     };
+
+    this->turn_nr++;
     handler.PrintDivider();
     handler.Print("Turn: ");
     handler.PrintLine(this->turn_nr);

@@ -97,6 +97,8 @@ void Sector::generate_sector(const int *arr) {
             i--;
         };
     }
+
+    place_ship(5,4);
 }
 
 void Sector::print_sector(IOHandler &h) {

@@ -11,6 +11,7 @@ void Headquarters::do_scan() {
     //delete last_scan;
     last_scan = new Scan();
     this->last_scan->do_scan();
+    last_scan->print_scan(io_handler);
 }
 
 void Headquarters::enter_sector(int x, int y, int ship_x, int ship_y) {
