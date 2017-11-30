@@ -29,23 +29,23 @@ SpaceShip& SpaceShip::operator=(SpaceShip &&other) noexcept {
 
 //ypos = col , xpos = row
 int SpaceShip::move_left() {
-    ypos--;
-    return ypos;
-}
-
-int SpaceShip::move_right() {
-    ypos++;
-    return ypos;
-}
-
-int SpaceShip::move_up() {
     xpos--;
     return xpos;
 }
 
-int SpaceShip::move_down() {
+int SpaceShip::move_right() {
     xpos++;
     return xpos;
+}
+
+int SpaceShip::move_up() {
+    ypos--;
+    return ypos;
+}
+
+int SpaceShip::move_down() {
+    ypos++;
+    return ypos;
 }
 
 

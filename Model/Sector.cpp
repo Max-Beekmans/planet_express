@@ -45,7 +45,7 @@ Sector &Sector::operator=(const Sector &other) noexcept {
 bool Sector::place_ship(int ship_x, int ship_y) {
     if(try_add(ship_x , ship_y , 'P')){
         if(ship_x != this->ship_x || ship_y != this->ship_y){
-            sector_map[this->ship_x][this->ship_y].val = '.';
+            sector_map[this->ship_y][this->ship_x].val = '.';
             this->ship_x = ship_x;
             this->ship_y = ship_y;
         }
@@ -113,8 +113,8 @@ void Sector::print_sector(IOHandler &h) {
 }
 
 bool Sector::try_add(int xpos, int ypos, char value) {
-    if(sector_map[xpos][ypos].is_empty()){
-        sector_map[xpos][ypos].val = value;
+    if(sector_map[ypos][xpos].is_empty()){
+        sector_map[ypos][xpos].val = value;
         return true;
     } else {
         return false;

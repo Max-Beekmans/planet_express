@@ -70,10 +70,15 @@ void Headquarters::move_up_sector(int ship_x) {
     if(y < 1){
         //abandon
     }
+    enter_sector(current_sector.sector_x , y - 1 , ship_x , 0);
 }
 
 void Headquarters::move_down_sector(int ship_x) {
-
+    int y = current_sector.sector_y;
+    if(y > 10){
+        //abandon
+    }
+    enter_sector(current_sector.sector_x , y + 1 , ship_x , 10);
 }
 
 

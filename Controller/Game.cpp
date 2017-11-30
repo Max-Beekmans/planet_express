@@ -38,6 +38,7 @@ Game::Game(IOHandler &handler) : hq(handler){
 }
 
 bool Game::handle_command(const int command_num) {
+    int pos = 0;
     switch(command_num) {
         case 0:
             //WILL LEAK MEMORY SCAN IS NOT CLEARED ON THIS CALL.
@@ -45,17 +46,20 @@ bool Game::handle_command(const int command_num) {
             exit(0);
             //TODO FIX THIS!!!!!!
         case 1:
-            int pos = player1.ship.move_up();
-
+            pos = player1.ship.move_up();
+            out_of_field_move(pos);
             return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
         case 2:
-            player1.ship.move_down();
+            pos = player1.ship.move_down();
+            out_of_field_move(pos);
             return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
         case 3:
-            player1.ship.move_left();
+            pos = player1.ship.move_left();
+            out_of_field_move(pos);
             return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
         case 4:
-            player1.ship.move_right();
+            pos = player1.ship.move_right();
+            out_of_field_move(pos);
             return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
         case 5:
             //pick up package (only near planet)
@@ -89,15 +93,15 @@ void Game::do_turn() {
 void Game::out_of_field_move(int pos) {
     if(pos == player1.ship.xpos){
         if(pos < 0){
-            hq.move_left_sector();
+            hq.move_left_sector(pos);
         } else if(pos > 10){
-            hq.move_right_sector();
+            hq.move_right_sector(pos);
         }
     } else {
         if(pos < 0){
-            hq.move_up_sector();
+            hq.move_up_sector(pos);
         } else if(pos > 10){
-            hq.move_down_sector();
+            hq.move_down_sector(pos);
         }
     }
 }
