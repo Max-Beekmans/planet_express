@@ -27,24 +27,25 @@ SpaceShip& SpaceShip::operator=(SpaceShip &&other) noexcept {
     return *this;
 }
 
+//ypos = col , xpos = row
 int SpaceShip::move_left() {
     ypos--;
-    return xpos;
+    return ypos;
 }
 
 int SpaceShip::move_right() {
     ypos++;
-    return xpos;
+    return ypos;
 }
 
 int SpaceShip::move_up() {
     xpos--;
-    return ypos;
+    return xpos;
 }
 
 int SpaceShip::move_down() {
     xpos++;
-    return ypos;
+    return xpos;
 }
 
 

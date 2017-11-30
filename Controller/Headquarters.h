@@ -20,6 +20,11 @@ public:
 
     bool update_ship(int x, int y);
     void update_encounters();
+    void move_left_sector(int ship_y);
+    void move_right_sector(int ship_y);
+    void move_up_sector(int ship_x);
+    void move_down_sector(int ship_x);
+
     Scan* last_scan = new Scan();
 private:
     IOHandler io_handler;

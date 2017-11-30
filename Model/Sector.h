@@ -23,12 +23,12 @@ public:
     void print_sector(IOHandler& h);
     bool place_ship(int ship_x, int ship_y);
     bool visited;
+    int sector_x;
+    int sector_y;
 private:
     void generate_sector(const int arr[3]);
     bool try_add(int xpos, int ypos, char value);
     SectorTile sector_map[10][10];
-    int sector_x;
-    int sector_y;
     int ship_x = 0;
     int ship_y = 0;
 };

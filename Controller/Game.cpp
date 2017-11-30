@@ -45,7 +45,8 @@ bool Game::handle_command(const int command_num) {
             exit(0);
             //TODO FIX THIS!!!!!!
         case 1:
-            player1.ship.move_up();
+            int pos = player1.ship.move_up();
+
             return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
         case 2:
             player1.ship.move_down();
@@ -83,4 +84,20 @@ void Game::do_turn() {
     handler.Print("Turn: ");
     handler.PrintLine(this->turn_nr);
 
+}
+
+void Game::out_of_field_move(int pos) {
+    if(pos == player1.ship.xpos){
+        if(pos < 0){
+            hq.move_left_sector();
+        } else if(pos > 10){
+            hq.move_right_sector();
+        }
+    } else {
+        if(pos < 0){
+            hq.move_up_sector();
+        } else if(pos > 10){
+            hq.move_down_sector();
+        }
+    }
 }

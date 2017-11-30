@@ -49,6 +49,33 @@ void Headquarters::update_encounters() {
 
 }
 
+void Headquarters::move_right_sector(int ship_y) {
+    int x = current_sector.sector_x;
+    if(x > 10){
+        //abandon
+    }
+    enter_sector(x + 1 , current_sector.sector_y , 0 , ship_y);
+}
+
+void Headquarters::move_left_sector(int ship_y) {
+    int x = current_sector.sector_x;
+    if(x < 1){
+        //abandon
+    }
+    enter_sector(x - 1 , current_sector.sector_y , 10 , ship_y);
+}
+
+void Headquarters::move_up_sector(int ship_x) {
+    int y = current_sector.sector_y;
+    if(y < 1){
+        //abandon
+    }
+}
+
+void Headquarters::move_down_sector(int ship_x) {
+
+}
+
 
 
 
