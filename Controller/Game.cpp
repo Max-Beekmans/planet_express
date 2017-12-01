@@ -8,7 +8,8 @@
 void Game::run_game() {
     handler.PrintLine("Welcome to planet express. Now hurry and tell me your name!");
     MyString player_name = MyString(handler.GetLine());
-    player1 = Player(player_name.GetValue());
+    SpaceShip spaceShip = SpaceShip(9,0);
+    player1 = Player(player_name.GetValue(), spaceShip);
     handler.Print("Great welcome to the club ");
     handler.Print(player1.name.GetValue());
     handler.ClearConsole();
@@ -21,7 +22,8 @@ void Game::run_game() {
     int x = handler.GetInt();
     int y = handler.GetInt();
     if(x == 0 || y == 0){
-        hq.enter_sector(x, y, 0, 0);
+        hq.enter_sector(x, y, 9, 0);
+        hq.update_ship(9,0);
     } else {
         handler.PrintLine("can only enter outside sectors");
     }
@@ -94,14 +96,18 @@ void Game::out_of_field_move(int pos) {
     if(pos == player1.ship.xpos){
         if(pos < 0){
             hq.move_left_sector(pos);
-        } else if(pos > 10){
+            player1.ship.xpos = 9;
+        } else if(pos > 9){
             hq.move_right_sector(pos);
+            player1.ship.xpos = 0;
         }
     } else {
         if(pos < 0){
             hq.move_up_sector(pos);
-        } else if(pos > 10){
+            player1.ship.ypos = 9;
+        } else if(pos > 9){
             hq.move_down_sector(pos);
+            player1.ship.ypos = 0;
         }
     }
 }

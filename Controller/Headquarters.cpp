@@ -28,8 +28,9 @@ void Headquarters::enter_sector(int x, int y, int ship_x, int ship_y) {
 
     this->current_sector = s;
 
+    //update_ship(ship_x, ship_y);
     s.place_ship(ship_x , ship_y);
-    s.print_sector(io_handler);
+    //s.print_sector(io_handler);
 }
 
 bool Headquarters::update_ship(int x, int y) {
@@ -51,34 +52,34 @@ void Headquarters::update_encounters() {
 
 void Headquarters::move_right_sector(int ship_y) {
     int x = current_sector.sector_x;
-    if(x > 10){
+    if(x > 4){
         //abandon
     }
-    enter_sector(x + 1 , current_sector.sector_y , 0 , ship_y);
+    enter_sector(x + 1 , current_sector.sector_y , 0, ship_y - 1);
 }
 
 void Headquarters::move_left_sector(int ship_y) {
     int x = current_sector.sector_x;
-    if(x < 1){
+    if(x < 0){
         //abandon
     }
-    enter_sector(x - 1 , current_sector.sector_y , 10 , ship_y);
+    enter_sector(x - 1 , current_sector.sector_y , 9, ship_y - 1);
 }
 
 void Headquarters::move_up_sector(int ship_x) {
     int y = current_sector.sector_y;
-    if(y < 1){
+    if(y < 0){
         //abandon
     }
-    enter_sector(current_sector.sector_x , y - 1 , ship_x , 0);
+    enter_sector(current_sector.sector_x, y - 1, ship_x - 1, 0);
 }
 
 void Headquarters::move_down_sector(int ship_x) {
     int y = current_sector.sector_y;
-    if(y > 10){
+    if(y > 4){
         //abandon
     }
-    enter_sector(current_sector.sector_x , y + 1 , ship_x , 10);
+    enter_sector(current_sector.sector_x, y + 1, ship_x - 1, 9);
 }
 
 

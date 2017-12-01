@@ -9,9 +9,9 @@ SpaceShip::SpaceShip(int xpos, int ypos) {
     this->ypos = ypos;
 }
 
-SpaceShip::SpaceShip(SpaceShip &other) noexcept {}
+//SpaceShip::SpaceShip(SpaceShip &other) noexcept {}
 
-SpaceShip &SpaceShip::operator=(SpaceShip &other) noexcept {
+SpaceShip& SpaceShip::operator=(SpaceShip &other) noexcept {
     if(&other == this){ return *this; }
     this->xpos = other.xpos;
     this->ypos = other.ypos;

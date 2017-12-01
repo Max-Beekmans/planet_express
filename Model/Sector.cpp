@@ -19,7 +19,7 @@ Sector::Sector(){
     visited = false;
 }
 
-Sector::Sector(Sector &&other) noexcept {}
+//Sector::Sector(Sector &&other) noexcept {}
 
 Sector &Sector::operator=(Sector &&other) noexcept {
     if(&other == this){ return *this; }
@@ -27,6 +27,8 @@ Sector &Sector::operator=(Sector &&other) noexcept {
         memcpy(this->sector_map[i] , other.sector_map[i] , 10);
     }
     this->visited = other.visited;
+    this->sector_x = other.sector_x;
+    this->sector_y = other.sector_y;
     return *this;
 }
 
@@ -39,6 +41,8 @@ Sector &Sector::operator=(const Sector &other) noexcept {
         memcpy(this->sector_map[i] , other.sector_map[i] , 10);
     }
     this->visited = other.visited;
+    this->sector_x = other.sector_x;
+    this->sector_y = other.sector_y;
     return *this;
 }
 

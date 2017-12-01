@@ -19,7 +19,7 @@ int IOHandler::GetInt() {
 
 
 void IOHandler::ClearConsole() {
-    for (int i = 0; i < 20; ++i) {
+    for (int i = 0; i < 10; ++i) {
         std::cout << '\n';
     }
     std::cout << std::endl;

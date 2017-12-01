@@ -12,7 +12,7 @@ class Player {
 public:
     Player();
     explicit Player(const char* name);
-    Player(const char* name, SpaceShip ship);
+    Player(const char* name, SpaceShip& ship);
     Player(Player&& other) noexcept ;
     Player(Player& other) noexcept ;
     Player&operator=(const Player& other) noexcept ;

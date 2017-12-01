@@ -16,7 +16,7 @@ Player::Player(const char * input_name){
     }
 }
 
-Player::Player(const char *name, SpaceShip ship) {
+Player::Player(const char *name, SpaceShip& ship) {
     this->name = MyString(name);
     this->ship = ship;
 }
