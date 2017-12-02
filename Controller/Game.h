@@ -18,6 +18,7 @@ private:
     bool handle_command(int command_num);
     void do_turn();
     void out_of_field_move(int pos);
+    bool can_move_ship(int target_x, int target_y);
 
     int turn_nr = 0;
     IOHandler handler;

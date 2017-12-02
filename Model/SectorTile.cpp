@@ -9,7 +9,11 @@ SectorTile::SectorTile(char val) {
 }
 
 bool SectorTile::is_empty() {
-    return val != 'O' || val != '*' || val != '@' || val != 'P';
+    if(val == 'O' || val == '*' || val == '@'){
+        return false;
+    }
+    return true;
+    //return val != 'O' || val != '*' || val != '@' || val != 'P';
 }
 
 SectorTile::SectorTile(SectorTile &&other) noexcept {

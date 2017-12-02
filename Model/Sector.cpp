@@ -8,7 +8,7 @@
 
 #include "Sector.h"
 
-Sector::Sector(int *arr, int x, int y) {
+Sector::Sector(int *arr, int x, int y, int ship_x, int ship_y) {
     this->sector_x = x;
     this->sector_y = y;
     generate_sector(arr);
@@ -63,7 +63,7 @@ struct coordinate {
     int y_pos;
 };
 
-void Sector::generate_sector(const int *arr) {
+void Sector::generate_sector(const int *arr, int ship_x, int ship_y) {
     coordinate astroid_arr[arr[0]];
     coordinate encounter_arr[arr[1]];
     coordinate planet_arr[arr[2]];
@@ -71,6 +71,8 @@ void Sector::generate_sector(const int *arr) {
     std::default_random_engine generator;
     generator.seed(time(0));
     std::uniform_int_distribution<int> map_size(0,9);
+
+    try_add(ship_x, ship_y, 'P');
 
     //generate astroids
     for (int i = 0; i < arr[0]; ++i) {
@@ -101,8 +103,6 @@ void Sector::generate_sector(const int *arr) {
             i--;
         };
     }
-
-    place_ship(5,4);
 }
 
 void Sector::print_sector(IOHandler &h) {
@@ -116,8 +116,12 @@ void Sector::print_sector(IOHandler &h) {
     }
 }
 
+bool Sector::can_add(int xpos, int ypos) {
+    return sector_map[ypos][xpos].is_empty();
+}
+
 bool Sector::try_add(int xpos, int ypos, char value) {
-    if(sector_map[ypos][xpos].is_empty()){
+    if(can_add(xpos, ypos)){
         sector_map[ypos][xpos].val = value;
         return true;
     } else {

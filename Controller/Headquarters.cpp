@@ -20,7 +20,7 @@ void Headquarters::enter_sector(int x, int y, int ship_x, int ship_y) {
     if(last_scan->visited_sectors[x][y].visited){
         s = last_scan->visited_sectors[x][y];
     } else {
-        s = {last_scan->scan_result[x][y] , x , y};
+        s = {last_scan->scan_result[x][y] , x , y,  ship_x, ship_y};
         //s = Sector(last_scan->scan_result[x][y], p.ship);
         s.visited = true;
         last_scan->visited_sectors[x][y] = s;
@@ -28,8 +28,8 @@ void Headquarters::enter_sector(int x, int y, int ship_x, int ship_y) {
 
     this->current_sector = s;
 
-    //update_ship(ship_x, ship_y);
-    s.place_ship(ship_x , ship_y);
+    update_ship(ship_x, ship_y);
+    //s.place_ship(ship_x , ship_y);
     //s.print_sector(io_handler);
 }
 
@@ -80,6 +80,10 @@ void Headquarters::move_down_sector(int ship_x) {
         //abandon
     }
     enter_sector(current_sector.sector_x, y + 1, ship_x - 1, 9);
+}
+
+bool Headquarters::can_move(int x, int y) {
+    return current_sector.can_add(x, y);
 }
 
 

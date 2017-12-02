@@ -23,7 +23,6 @@ void Game::run_game() {
     int y = handler.GetInt();
     if(x == 0 || y == 0){
         hq.enter_sector(x, y, 9, 0);
-        hq.update_ship(9,0);
     } else {
         handler.PrintLine("can only enter outside sectors");
     }
@@ -48,21 +47,33 @@ bool Game::handle_command(const int command_num) {
             exit(0);
             //TODO FIX THIS!!!!!!
         case 1:
-            pos = player1.ship.move_up();
-            out_of_field_move(pos);
-            return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+            if(can_move_ship(player1.ship.xpos , player1.ship.ypos - 1)){
+                pos = player1.ship.move_up();
+                out_of_field_move(pos);
+                return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+            }
+            return false;
         case 2:
-            pos = player1.ship.move_down();
-            out_of_field_move(pos);
-            return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+            if(can_move_ship(player1.ship.xpos , player1.ship.ypos + 1)){
+                pos = player1.ship.move_down();
+                out_of_field_move(pos);
+                return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+            }
+            return false;
         case 3:
-            pos = player1.ship.move_left();
-            out_of_field_move(pos);
-            return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+            if(can_move_ship(player1.ship.xpos - 1, player1.ship.ypos)){
+                pos = player1.ship.move_left();
+                out_of_field_move(pos);
+                return hq.update_ship(player1.ship.xpos, player1.ship.ypos);
+            }
+            return false;
         case 4:
-            pos = player1.ship.move_right();
-            out_of_field_move(pos);
-            return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+            if(can_move_ship(player1.ship.xpos + 1, player1.ship.ypos)){
+                pos = player1.ship.move_right();
+                out_of_field_move(pos);
+                return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+            }
+            return false;
         case 5:
             //pick up package (only near planet)
             return true;
@@ -81,7 +92,7 @@ bool Game::handle_command(const int command_num) {
 void Game::do_turn() {
     int in = handler.GetInt();
     while(!handle_command(in)){
-        handler.PrintLine("can't perform action command");
+//        handler.PrintLine("can't perform action command");
         in = handler.GetInt();
     };
 
@@ -89,7 +100,6 @@ void Game::do_turn() {
     handler.PrintDivider();
     handler.Print("Turn: ");
     handler.PrintLine(this->turn_nr);
-
 }
 
 void Game::out_of_field_move(int pos) {
@@ -110,4 +120,17 @@ void Game::out_of_field_move(int pos) {
             player1.ship.ypos = 0;
         }
     }
+}
+
+bool Game::can_move_ship(int target_x, int target_y) {
+
+
+    if(!hq.can_move(target_x, target_y)){
+        handler.Print("Can't move to tile x:  ");
+        handler.Print(target_x);
+        handler.Print(" y: ");
+        handler.PrintLine(target_y);
+        return false;
+    };
+    return true;
 }

@@ -19,6 +19,7 @@ public:
     void leave_sector();
 
     bool update_ship(int x, int y);
+    bool can_move(int x, int y);
     void update_encounters();
     void move_left_sector(int ship_y);
     void move_right_sector(int ship_y);

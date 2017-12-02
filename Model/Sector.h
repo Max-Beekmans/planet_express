@@ -12,7 +12,7 @@ class Sector {
 public:
     //rof
     Sector();
-    Sector(int arr[3] , int x , int y);
+    Sector(int arr[3] , int x , int y, int ship_x = 0, int ship_y = 0);
     Sector(const Sector& other) noexcept;
     Sector(Sector&& other) noexcept;
 
@@ -22,11 +22,13 @@ public:
 
     void print_sector(IOHandler& h);
     bool place_ship(int ship_x, int ship_y);
+    bool can_add(int xpos, int ypos);
+
     bool visited;
     int sector_x;
     int sector_y;
 private:
-    void generate_sector(const int arr[3]);
+    void generate_sector(const int arr[3] , int ship_x = 0, int ship_y = 0);
     bool try_add(int xpos, int ypos, char value);
     SectorTile sector_map[10][10];
     int ship_x = 0;
