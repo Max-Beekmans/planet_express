@@ -1,0 +1,14 @@
+//
+// Created by Max on 12/2/2017.
+//
+
+#ifndef PLANET_EXPRESS_ENCOUNTERPARSER_H
+#define PLANET_EXPRESS_ENCOUNTERPARSER_H
+
+
+class EncounterParser {
+
+};
+
+
+#endif //PLANET_EXPRESS_ENCOUNTERPARSER_H

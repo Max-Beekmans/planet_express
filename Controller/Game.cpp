@@ -123,8 +123,6 @@ void Game::out_of_field_move(int pos) {
 }
 
 bool Game::can_move_ship(int target_x, int target_y) {
-
-
     if(!hq.can_move(target_x, target_y)){
         handler.Print("Can't move to tile x:  ");
         handler.Print(target_x);

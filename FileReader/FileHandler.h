@@ -6,7 +6,15 @@
 #define PLANET_EXPRESS_FILE_HANDLER_H
 
 
+#include "../Helper/MyString.h"
+
 class FileHandler {
+public:
+
+    MyString GetLine(const char* file_name);
+
+private:
+
 
 };
 

@@ -20,6 +20,7 @@ public:
 
     MyString name;
     SpaceShip ship;
+    int victory_point = 0;
 };
 
 
