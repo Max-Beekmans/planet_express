@@ -6,6 +6,7 @@
 #define PLANET_EXPRESS_IOHANDLER_H
 
 #include <iostream>
+#include "MyString.h"
 
 class IOHandler {
 public:
@@ -14,7 +15,12 @@ public:
     template <class T>
     void PrintLine(T obj);
 
-    //char* GetLine();
+    MyString GetLine();
+    int GetInt();
+
+    //not really but just whitespace
+    void ClearConsole();
+    void PrintDivider();
 };
 
 template<class T>
@@ -26,9 +32,5 @@ template<class T>
 void IOHandler::PrintLine(T obj) {
     std::cout << obj << std::endl;
 }
-
-//char *IOHandler::GetLine() {
-//    return nullptr;
-//}
 
 #endif //PLANET_EXPRESS_IOHANDLER_H

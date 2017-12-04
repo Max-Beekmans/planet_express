@@ -1,27 +1,17 @@
 #include "Helper/IOHandler.h"
-#include "ship.h"
-#include "headquarters.h"
-
-
+#include "Controller/Game.h"
+#include "FileReader/FileHandler.h"
 
 int main() {
 
-    ship s;
-    player p{"Alberto"};
-    headquarters hq{p};
+    FileHandler fileHandler;
+    MyString string = fileHandler.GetLine("../Ontmoetingen.csv");
+
+    //Encounter encounter = fileHandler.GetRandomEncounter(1);
+
 
     IOHandler handler{};
-    hq.do_scan();
-    hq.last_scan->print_scan(handler);
-
-    hq.visit_sector(0,3);
-
-    hq.visit_sector(0,3);
-
-    hq.do_scan();
-
-    hq.visit_sector(0,3);
-    hq.visit_sector(0,3);
-
+    //handler.PrintLine(string.GetValue());
+    Game game {handler};
     return 0;
 }

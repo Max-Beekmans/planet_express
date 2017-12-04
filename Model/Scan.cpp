@@ -6,15 +6,15 @@
 #define INNER_SIZE 3
 
 #include <random>
-#include "scan.h"
+#include "Scan.h"
 
-//scan::scan(const scan &other) noexcept {}
+//Scan::Scan(const Scan &other) noexcept {}
 
-scan::scan() {
-
+Scan::Scan() {
+    scan_result = nullptr;
 }
 
-scan::~scan() {
+Scan::~Scan() {
     for (int j = 0; j < 5; ++j) {
         for (int k = 0; k < 3; ++k) {
             delete[] scan_result[j][k];
@@ -24,11 +24,11 @@ scan::~scan() {
     delete[] scan_result;
 }
 
-scan::scan(scan &&other) noexcept {
+Scan::Scan(Scan &&other) noexcept {
 //    other.scan_result = nullptr;
 }
 
-scan &scan::operator=(scan &&other) noexcept {
+Scan &Scan::operator=(Scan &&other) noexcept {
     if(&other == this) { return *this; }
 //    for (int j = 0; j < 5; ++j) {
 //        for (int k = 0; k < 3; ++k) {
@@ -44,7 +44,7 @@ scan &scan::operator=(scan &&other) noexcept {
     return *this;
 }
 
-void scan::print_scan(IOHandler &h) {
+void Scan::print_scan(IOHandler &h) {
     for (int i = 0; i < OUTTER_SIZE; ++i) {
         for (int j = 0; j < OUTTER_SIZE; ++j) {
             for (int k = 0; k < INNER_SIZE; ++k) {
@@ -56,7 +56,7 @@ void scan::print_scan(IOHandler &h) {
     }
 }
 
-void scan::do_scan() {
+void Scan::do_scan() {
     int ***scan_array;
 
     std::default_random_engine generator;
@@ -81,6 +81,6 @@ void scan::do_scan() {
 }
 
 
-//scan &scan::operator=(const scan &other) {
+//Scan &Scan::operator=(const Scan &other) {
 //    return *this;
 //}
