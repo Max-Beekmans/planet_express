@@ -32,10 +32,36 @@ std::ostream &MyString::operator<<(std::ostream &output) {
     return output << this->GetValue();
 }
 
-void MyString::substr(char*& first, char*& second) {
-    const char* delim{ ";" };
+void MyString::substr(char*& first, char*& second, const char* delim) {
+//    const char* delim{ ";" };
     first = strtok(value, delim);
     second = strtok(nullptr, delim);
+}
+
+char* MyString::GetToken(const char* delim) {
+    char* val = strtok(nullptr, delim);
+
+    if(val != nullptr){
+        return val;
+    } else {
+        return strtok(value , delim);
+    }
+}
+
+char** MyString::Tokenize(char**& tokens, const char* delim) {
+    char* token = nullptr;
+    int i = 0;
+
+    token = strtok(value, delim);
+    tokens[i] = token;
+    i++;
+
+    while(tokens[i] = strtok(nullptr, delim)){
+//        tokens[i] = strtok(nullptr, delim);
+        i++;
+    }
+
+    return tokens;
 }
 
 

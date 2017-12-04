@@ -21,8 +21,10 @@ public:
     Sector& operator=(const Sector& other) noexcept ;
 
     void print_sector(IOHandler& h);
-    bool place_ship(int ship_x, int ship_y);
+    void place_ship(int ship_x, int ship_y);
     bool can_add(int xpos, int ypos);
+    bool adjacent_to_encounter(int x, int y);
+    bool adjacent_to_planet(int x, int y);
 
     bool visited;
     int sector_x;

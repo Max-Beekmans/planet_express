@@ -23,6 +23,7 @@ void Game::run_game() {
     int y = handler.GetInt();
     if(x == 0 || y == 0){
         hq.enter_sector(x, y, 9, 0);
+        hq.print_current_sector();
     } else {
         handler.PrintLine("can only enter outside sectors");
     }
@@ -50,38 +51,50 @@ bool Game::handle_command(const int command_num) {
             if(can_move_ship(player1.ship.xpos , player1.ship.ypos - 1)){
                 pos = player1.ship.move_up();
                 out_of_field_move(pos);
-                return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+                hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+                return true;
             }
             return false;
         case 2:
             if(can_move_ship(player1.ship.xpos , player1.ship.ypos + 1)){
                 pos = player1.ship.move_down();
                 out_of_field_move(pos);
-                return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+                hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+                return true;
             }
             return false;
         case 3:
             if(can_move_ship(player1.ship.xpos - 1, player1.ship.ypos)){
                 pos = player1.ship.move_left();
                 out_of_field_move(pos);
-                return hq.update_ship(player1.ship.xpos, player1.ship.ypos);
+                hq.update_ship(player1.ship.xpos, player1.ship.ypos);
+                return true;
             }
             return false;
         case 4:
             if(can_move_ship(player1.ship.xpos + 1, player1.ship.ypos)){
                 pos = player1.ship.move_right();
                 out_of_field_move(pos);
-                return hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+                hq.update_ship(player1.ship.xpos , player1.ship.ypos);
+                return true;
             }
             return false;
         case 5:
+            if(hq.can_pickup(player1.ship.xpos, player1.ship.ypos)){
+                handler.PrintLine("Obtained Package");
+                return true;
+            }
+            handler.PrintLine("Can't pickup package");
             //pick up package (only near planet)
-            return true;
+            return false;
         case 6:
             //look at package (only if package in inventory)
             return true;
         case 7:
             //deliver package (only near delivery planet)
+            return true;
+        case 8:
+            handler.PrintLine("Doing nothing this turn");
             return true;
         default:
             handler.PrintLine("Invalid command");
@@ -95,6 +108,8 @@ void Game::do_turn() {
 //        handler.PrintLine("can't perform action command");
         in = handler.GetInt();
     };
+
+    hq.print_current_sector();
 
     this->turn_nr++;
     handler.PrintDivider();

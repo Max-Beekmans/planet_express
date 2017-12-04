@@ -19,7 +19,7 @@ Sector::Sector(){
     visited = false;
 }
 
-//Sector::Sector(Sector &&other) noexcept {}
+Sector::Sector(Sector &&other) noexcept {}
 
 Sector &Sector::operator=(Sector &&other) noexcept {
     if(&other == this){ return *this; }
@@ -46,16 +46,14 @@ Sector &Sector::operator=(const Sector &other) noexcept {
     return *this;
 }
 
-bool Sector::place_ship(int ship_x, int ship_y) {
+void Sector::place_ship(int ship_x, int ship_y) {
     if(try_add(ship_x , ship_y , 'P')){
         if(ship_x != this->ship_x || ship_y != this->ship_y){
             sector_map[this->ship_y][this->ship_x].val = '.';
             this->ship_x = ship_x;
             this->ship_y = ship_y;
         }
-        return true;
     }
-    return false;
 }
 
 struct coordinate {
@@ -127,6 +125,55 @@ bool Sector::try_add(int xpos, int ypos, char value) {
     } else {
         return false;
     }
+}
+
+bool Sector::adjacent_to_encounter(int x, int y) {
+    //top
+    if(sector_map[x][y - 1].is_encounter()){
+        return true;
+    //down
+    } else if(sector_map[x][y + 1].is_encounter()){
+        return true;
+    //left
+    } else if(sector_map[x - 1][y].is_encounter()){
+        return true;
+    //right
+    } else if(sector_map[x + 1][y].is_encounter()){
+        return true;
+    }
+    return false;
+}
+
+bool Sector::adjacent_to_planet(int x, int y) {
+
+
+    int y_top = y - 1;
+    if(sector_map[y_top][x].is_planet()){
+        return true;
+    }
+
+    int y_bot = y + 1;
+    if(sector_map[x][y_bot].is_planet()){
+        return true;
+    }
+
+//    int x_left = x - 1;
+//    if(sec)
+//
+//    //top
+//    if(sector_map[x][y--].is_planet()){
+//        return true;
+//        //down
+//    } else if(sector_map[x][y++].is_planet()){
+//        return true;
+//        //left
+//    } else if(sector_map[x--][y].is_planet()){
+//        return true;
+//        //right
+//    } else if(sector_map[x++][y].is_planet()){
+//        return true;
+//    }
+    return false;
 }
 
 

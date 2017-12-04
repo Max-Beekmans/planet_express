@@ -10,15 +10,14 @@
 
 class Encounter {
 public:
-    Encounter(MyString description);
+    Encounter();
 
-    struct encounter_condition{
-        int min;
-        int max;
+    struct encounter_condition {
+        int damage_taken;
+        int damage_dealt;
     };
     MyString description;
     encounter_condition condition;
-    int encounter_condition_max;
     MyString condition_text;
 
 };

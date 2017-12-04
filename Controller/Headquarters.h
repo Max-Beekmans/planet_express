@@ -18,9 +18,12 @@ public:
     void enter_sector(int x, int y, int ship_x, int ship_y);
     void leave_sector();
 
-    bool update_ship(int x, int y);
+    void update_ship(int x, int y);
     bool can_move(int x, int y);
+    bool can_pickup(int x, int y);
     void update_encounters();
+    void print_current_sector();
+
     void move_left_sector(int ship_y);
     void move_right_sector(int ship_y);
     void move_up_sector(int ship_x);

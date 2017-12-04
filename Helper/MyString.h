@@ -18,7 +18,9 @@ public:
     std::ostream &operator<<(std::ostream& output);
 
     const char* GetValue() const;
-    void substr(char*& first, char*& second);
+    void substr(char*& first, char*& second, const char* delim = ";");
+    char* GetToken(const char* delim);
+    char** Tokenize(char**& tokens, const char* delim);
 private:
     char value[128];
 };

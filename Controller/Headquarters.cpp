@@ -33,13 +33,8 @@ void Headquarters::enter_sector(int x, int y, int ship_x, int ship_y) {
     //s.print_sector(io_handler);
 }
 
-bool Headquarters::update_ship(int x, int y) {
-    if(current_sector.place_ship(x , y)){
-        io_handler.ClearConsole();
-        current_sector.print_sector(io_handler);
-        return true;
-    };
-    return false;
+void Headquarters::update_ship(int x, int y) {
+    current_sector.place_ship(x, y);
 }
 
 void Headquarters::leave_sector() {
@@ -52,7 +47,7 @@ void Headquarters::update_encounters() {
 
 void Headquarters::move_right_sector(int ship_y) {
     int x = current_sector.sector_x;
-    if(x > 4){
+    if(x > 9){
         //abandon
     }
     enter_sector(x + 1 , current_sector.sector_y , 0, ship_y - 1);
@@ -76,7 +71,7 @@ void Headquarters::move_up_sector(int ship_x) {
 
 void Headquarters::move_down_sector(int ship_x) {
     int y = current_sector.sector_y;
-    if(y > 4){
+    if(y > 9){
         //abandon
     }
     enter_sector(current_sector.sector_x, y + 1, ship_x - 1, 9);
@@ -84,6 +79,18 @@ void Headquarters::move_down_sector(int ship_x) {
 
 bool Headquarters::can_move(int x, int y) {
     return current_sector.can_add(x, y);
+}
+
+bool Headquarters::can_pickup(int x, int y) {
+    if(current_sector.adjacent_to_planet(x,y)){
+        return true;
+    }
+    return false;
+}
+
+void Headquarters::print_current_sector() {
+    io_handler.ClearConsole();
+    current_sector.print_sector(io_handler);
 }
 
 

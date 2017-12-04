@@ -3,32 +3,60 @@
 //
 
 #include "FileHandler.h"
+
+#include <random>
+#include <ctime>
 #include <iostream>
 #include <fstream>
 
 MyString FileHandler::GetLine(const char *file_name) {
     std::ifstream file_stream;
-    char line[512];
+    file_stream.open(file_name);
 
-    file_stream.open(file_name, std::ios::in);
-
-//    while(file_stream.getline(line, sizeof line, ';')){
-//        std::cout << line;
-//    }
-
-//    while(isspace((unsigned char)*line)) line++;
-
-    char first_char;
-
-    file_stream >> first_char;
-
-    if((!first_char) && first_char == '#'){
-        file_stream.ignore(';');
+    char line[25][512];
+    int i = 0;
+    int min = 0;
+    int max = 25;
+    //file_stream >> line[i]
+    while(file_stream.getline(line[i] , sizeof line[i])){
+        if(line[i][0] == '#'){
+            min++;
+        }
+        //std::cout << line[i] << std::endl;
+        i++;
     }
 
-    while (file_stream.getline(line, sizeof line, ';')) {
-        std::cout << line;
-    }
+    file_stream.close();
 
-    return MyString {line};
+    std::default_random_engine generator;
+    generator.seed(time(0));
+    std::uniform_int_distribution<int> rand_line(min,max);
+
+    //TODO replace for rand line ( where min escapes # lines)
+    MyString string = MyString(line[rand_line(generator)]);
+    return MyString {line[15]};
+}
+
+Encounter FileHandler::GetRandomEncounter(int character) {
+
+    //character 1 (Fry), 2 (Leela), 3 (Bender)
+
+    std::default_random_engine generator;
+    generator.seed(time(0));
+    std::uniform_int_distribution<int> coin_toss(0,1);
+
+
+    MyString string = GetLine("../Ontmoetingen.csv");
+
+
+
+    return ParseEncounter(string, character, coin_toss(generator));
+    //return Encounter{string};
+}
+
+Encounter FileHandler::ParseEncounter(MyString string, int character, int coin) {
+    Encounter enc;
+    char** tokens;
+    char** result = string.Tokenize(tokens, ";");
+    return enc;
 }

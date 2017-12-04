@@ -12,6 +12,8 @@ public:
     SectorTile(SectorTile &&other) noexcept ;
     SectorTile& operator=(SectorTile&& other) noexcept;
     bool is_empty();
+    bool is_encounter();
+    bool is_planet();
     char val;
 };
 

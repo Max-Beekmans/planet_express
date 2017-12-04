@@ -28,3 +28,11 @@ SectorTile &SectorTile::operator=(SectorTile &&other) noexcept {
     this->val = other.val;
     return *this;
 }
+
+bool SectorTile::is_encounter() {
+    return val == '*';
+}
+
+bool SectorTile::is_planet() {
+    return val == '@';
+}
