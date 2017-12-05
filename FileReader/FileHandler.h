@@ -19,6 +19,12 @@ public:
 private:
     Encounter ParseEncounter(MyString string, int character, int coin);
 
+    struct condition{
+        int damage_taken;
+        int damage_dealt;
+    };
+    condition parse_condition(char* string);
+
 };
 
 

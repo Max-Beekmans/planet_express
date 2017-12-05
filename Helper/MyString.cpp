@@ -48,20 +48,22 @@ char* MyString::GetToken(const char* delim) {
     }
 }
 
-char** MyString::Tokenize(char**& tokens, const char* delim) {
-    char* token = nullptr;
+char** MyString::Tokenize(const char* delim) {
+    char** arr = new char*[6];
     int i = 0;
+    char* tokens[64];
+    tokens[i] = strtok(value, delim);
+//    while(tokens[i] = strtok(nullptr, delim)){
+////        tokens[i] = strtok(nullptr, delim);
+//        i++;
+//    }
 
-    token = strtok(value, delim);
-    tokens[i] = token;
-    i++;
-
-    while(tokens[i] = strtok(nullptr, delim)){
-//        tokens[i] = strtok(nullptr, delim);
+    while(char* p = strtok(nullptr, delim)){
+        arr[i] = p;
         i++;
     }
 
-    return tokens;
+    return arr;
 }
 
 

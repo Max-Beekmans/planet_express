@@ -56,7 +56,66 @@ Encounter FileHandler::GetRandomEncounter(int character) {
 
 Encounter FileHandler::ParseEncounter(MyString string, int character, int coin) {
     Encounter enc;
-    char** tokens;
-    char** result = string.Tokenize(tokens, ";");
+    char** result = string.Tokenize(";");
+
+    for (int i = 0; i < 6; ++i) {
+        condition c = this->parse_condition(result[i]);
+
+        if(i == 0){
+            enc.description = MyString{result[i]};
+        } else if(i == 1){
+            enc.condition.damage_taken = c.damage_taken;
+            enc.condition.damage_dealt = c.damage_dealt;
+        } else if(i == 2){
+            enc.condition_text = result[i];
+        } else if(i == 3){
+            enc.condition.damage_taken = c.damage_taken;
+            enc.condition.damage_dealt = c.damage_dealt;
+        } else if(i == 4){
+
+        } else if(i == 5){
+
+        } else if(i == 6){
+
+        }
+    }
+
+    delete[] result;
     return enc;
+}
+
+FileHandler::condition FileHandler::parse_condition(char* string) {
+    condition c = condition();
+    int i = 0;
+    int j = 0;
+    char* end;
+    char digit[2];
+    while(string[i] != '\0'){
+        if(isdigit(string[i])){
+            digit[j++] = string[i];
+        } else if(string[i] == '-'){
+            c.damage_dealt = std::strtol(digit , &end, 0);
+            digit[0] = '\0';
+            j = 0;
+        } else if(string[i] == ']'){
+            c.damage_taken = std::strtol(digit , &end, 0);
+            digit[0] = '\0';
+            j = 0;
+        }
+        i++;
+    }
+
+   // int dig = std::strtol(digit , &end, 0);
+
+//    while(string[i] != ']'){
+//        char digit[2];
+//        int j = 0;
+//        if(isdigit(string[i])){
+//            digit[j] = string[i];
+//            j++;
+//        }
+//        i++;
+//    }
+
+    return c;
 }
